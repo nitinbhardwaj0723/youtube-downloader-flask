@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎥 YouTube Downloader</h1>
+        <p class="subtitle">Paste a YouTube link and download video or audio easily</p>
+
+        <div class="input-section">
+            <input type="text" id="youtubeUrl" placeholder="Paste YouTube URL here...">
+            <button onclick="fetchInfo()">Get Info</button>
+        </div>
+
+        <div id="error" class="error"></div>
+
+        <div id="videoInfo" class="video-card hidden">
+            <img id="thumbnail" src="" alt="Thumbnail">
+
+            <div class="video-details">
+                <h2 id="title"></h2>
+                <p><strong>Channel:</strong> <span id="uploader"></span></p>
+                <p><strong>Duration:</strong> <span id="duration"></span> sec</p>
+            </div>
+
+            <div class="button-group">
+                <form action="/download" method="POST">
+                    <input type="hidden" name="url" id="videoUrl1">
+                    <input type="hidden" name="type" value="video">
+                    <button type="submit" class="video-btn">⬇ Download Video</button>
+                </form>
+
+                <form action="/download" method="POST">
+                    <input type="hidden" name="url" id="videoUrl2">
+                    <input type="hidden" name="type" value="audio">
+                    <button type="submit" class="audio-btn">🎵 Download Audio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
